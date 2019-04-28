@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div style="width: 400px; height: 400px; margin: 40px;">
+
+        <form action="/process" method="POST" novalidate>
+            <div class="form-group">
+
+                {% with messages = get_flashed_messages(category_filter=["name", "security"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <span style='color: red; display: block'>{{message}}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <label for="formGroupExampleInput">Name:</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name" name="name">
+            </div>
+            <div class="form-group">
+                {% with messages = get_flashed_messages(category_filter="email") %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <span style='color: red; display: block'>{{message}}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <label for="formGroupExampleInput2">Email:</label>
+                <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email" name="email">
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
